@@ -1,1 +1,28 @@
-/home/pyonium/.config/bspwm/bspwmrc
+#!/bin/bash
+picom -CGb
+feh --bg-scale ~/.fehbg.png
+sudo modprobe -r psmouse && sudo modprobe psmouse
+xset m 1 0 &
+xrdb -merge ~/.Xresources &
+statnot &
+$HOME/.config/polybar/launch.sh
+
+echo "2-3" | sudo tee /sys/bus/usb/drivers/usb/unbind &
+
+bspc config border_width 3 &
+bspc config window_gap 12 &
+bspc config split_ratio 0.50 &
+
+bspc config normal_border_color "#172637" &
+bspc config focused_border_color "#1d4e6b" &
+
+bspc monitor -d 1 2 3 4 5
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+urxvtd &
+
+xscreensaver -no-splash &
+xss-lock -- xscreensaver-command -lock &
+
+fcitx

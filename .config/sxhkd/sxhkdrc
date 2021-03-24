@@ -1,1 +1,41 @@
-/home/pyonium/.config/sxhkd/sxhkdrc
+super + Return
+	urxvtc -e /bin/fish
+
+super + w
+	bspc node -c
+
+super + d
+	rofi -show drun
+
+super + l
+	xscreensaver-command -lock
+
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+Print
+	maim | tee $(date +"/home/pyonium/Screenshots/ss_%Y-%m-%d_%H:%m:%S.png) | xclip -selection clipboard -t image/png
+
+shift + Print
+	maim -s -b 5 -c .70,.76,.90 | tee $(date +"/home/pyonium/Screenshots/ss_%Y-%m-%d_%H:%m:%S.png") | xclip -selection clipboard -t image/png
+
+XF86AudioMicMute
+	pactl set-source-mute 1 toggle
+
+XF86AudioLowerVolume
+	pactl set-sink-volume 0 -10%
+
+XF86AudioRaiseVolume
+	pactl set-sink-volume 0 +10%
+
+XF86AudioMute
+	pactl set-sink-mute 0 toggle
+
+XF86MonBrightnessDown
+	xbacklight -dec 10
+
+XF86MonBrightnessUp
+	xbacklight -inc 10
+
+XF86Display
+	xrandr --output HDMI2 --same-as eDP1
